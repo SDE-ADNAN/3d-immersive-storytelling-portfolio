@@ -16,7 +16,7 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
 
     async function init() {
       try {
-        const mod = await import('@studio-freight/lenis');
+        const mod = await import('lenis');
         const Lenis = (mod as any).default ?? mod;
         lenisInstance = new Lenis({
           duration: 1.2,
@@ -31,6 +31,16 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
 
         if (!mounted) return;
         setLenis(lenisInstance);
+
+        // Initialize GSAP ScrollTrigger <-> Lenis sync (if GSAP installed)
+        try {
+          const { initScrollSync } = await import('../../lib/scroll-sync');
+          const cleanup = await initScrollSync(lenisInstance);
+          // attach cleanup to instance so we can call on destroy
+          (lenisInstance as any).__scrollSyncCleanup = cleanup;
+        } catch (e) {
+          // ignore if scroll-sync couldn't load
+        }
 
         const raf = (time: number) => {
           try {
