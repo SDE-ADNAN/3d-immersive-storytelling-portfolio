@@ -78,3 +78,15 @@ body {
   transform: translateY(0);
 }
 
+/* Data-attribute override: allow JS-controlled reduced-motion fallback */
+[data-motion="reduced"] *,
+[data-motion="reduced"] *::before,
+[data-motion="reduced"] *::after {
+  animation-duration: 0ms !important;
+  animation-delay: 0ms !important;
+  transition-duration: 0ms !important;
+  transition-delay: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+
