@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.18);
+  --glass-blur: 12px;
+  --radius-lg: 20px;
+  --motion-duration: 350ms;
+  --motion-ease: cubic-bezier(.22,.9,.35,1);
+}
+
+html,body,#root{
+  height:100%;
+}
+
+body{
+  @apply bg-neutral-900 text-white antialiased;
+  background: linear-gradient(180deg,#060615 0%, #081028 100%);
+}
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-lg);
+}
