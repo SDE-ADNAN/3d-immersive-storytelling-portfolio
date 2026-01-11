@@ -1,5 +1,6 @@
 import './globals.css';
 import { MotionProvider } from '../components/ui/MotionProvider';
+import { ScrollProvider } from '../components/ui/ScrollProvider';
 
 export const metadata = {
   title: 'Immersive Storytelling Portfolio',
@@ -11,7 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <MotionProvider>
-          <div className="min-h-screen">{children}</div>
+          <ScrollProvider>
+            <div className="min-h-screen">{children}</div>
+          </ScrollProvider>
         </MotionProvider>
       </body>
     </html>
