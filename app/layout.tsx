@@ -1,4 +1,4 @@
-import './globals.css';
+import '../styles/globals.css';
 import { MotionProvider } from '../components/ui/MotionProvider';
 import { ScrollProvider } from '../components/ui/ScrollProvider';
 import ScrollDebugOverlay from '../components/ui/ScrollDebugOverlay';
