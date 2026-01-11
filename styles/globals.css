@@ -1,23 +1,63 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --glass-bg: rgba(255,255,255,0.08);
+  /* Color / surface */
+  --bg-900: #060615;
+  --bg-800: #081028;
+  --text-primary: #ffffff;
+
+  /* Glass tokens */ 
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-bg-strong: rgba(255,255,255,0.12);
   --glass-border: rgba(255,255,255,0.18);
   --glass-blur: 12px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 20px;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+
+  /* Motion */
+  --motion-duration-fast: 180ms;
   --motion-duration: 350ms;
+  --motion-duration-slow: 600ms;
   --motion-ease: cubic-bezier(.22,.9,.35,1);
+  --motion-ease-soft: cubic-bezier(.25,.46,.45,.94);
+
+  /* Depth / z-index */
+  --z-hero: 40;
+  --z-overlay: 50;
+
+  /* Utility */
+  --noise-opacity: 0.02;
 }
 
-html,body,#root{
-  height:100%;
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0ms;
+    --motion-duration-fast: 0ms;
+    --motion-duration-slow: 0ms;
+  }
 }
 
-body{
+html, body, #root {
+  height: 100%;
+}
+
+body {
   @apply bg-neutral-900 text-white antialiased;
-  background: linear-gradient(180deg,#060615 0%, #081028 100%);
+  background: linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%);
+  color: var(--text-primary);
 }
 
 .glass {
@@ -26,3 +66,15 @@ body{
   backdrop-filter: blur(var(--glass-blur));
   border-radius: var(--radius-lg);
 }
+
+/* Small helpers for consistent motion */
+.motion-safe\:fade-in {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--motion-duration) var(--motion-ease), transform var(--motion-duration) var(--motion-ease);
+}
+.motion-safe\:fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
